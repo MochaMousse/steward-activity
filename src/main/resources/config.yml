@@ -1,0 +1,44 @@
+mysql:
+  url: jdbc:mysql://localhost:3306/steward_activity
+  username: root
+  password: root
+
+# QQ机器人API地址
+go-cqhttp: http://localhost:8080
+
+# QQ群
+qq-group:
+  message: 12345
+  report: 54321
+
+# 当日在线时长最长
+star-of-day:
+  message: 🎉本日之星 👉 %s
+  reward: 10000
+
+# 当月签到次数最多
+star-of-month:
+  message: 🎉本月之星 👉 %s
+  reward: 50000
+
+# 提醒周期, 单位: 分
+task-period: 5
+
+# 玩家当日第一次登录是否直接显示GUI
+show-on-first-login: true
+
+# 补签机会
+chance: 2
+
+# 签到奖励
+sign-reward: 50
+
+# 月内天数奖励, 单位: 天
+days-reward:
+  - 2: 200
+  - 3: 300
+
+# 天内在线时长奖励, 单位: 分
+duration-reward:
+  - 2: 200
+  - 3: 300

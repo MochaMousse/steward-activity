@@ -1,0 +1,11 @@
+name: steward-activity
+version: '${project.version}'
+main: cc.mousse.steward.activity.Application
+api-version: '1.20'
+depend: [ CraftGUI, XConomy ]
+author: PhineasZ
+commands:
+  activity:
+    description: 打开主界面
+    usage: /<command>
+    aliases: [ act ]
