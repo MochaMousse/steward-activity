@@ -210,7 +210,7 @@ public class CalendarUtil {
       baseDate =
           new SimpleDateFormat(DATE_FORMAT_PATTERN, Locale.CHINA).parse("1900-1-31 00:00:00");
     } catch (ParseException e) {
-      LogUtil.error(e);
+      LogUtil.warn(e);
     }
     if (baseDate == null || thatDate == null) {
       return xDay;

@@ -83,7 +83,7 @@ public class ConfigUtil {
     String username = config.getString(Key.MYSQL_USERNAME);
     String password = config.getString(Key.MYSQL_PASSWORD);
     if (StringUtils.isAnyBlank(url, username, password)) {
-      LogUtil.error(DATASOURCE_CONFIG_INCOMPLETE);
+      LogUtil.warn(DATASOURCE_CONFIG_INCOMPLETE);
       Bukkit.getPluginManager().disablePlugin(instance);
       success = false;
     } else {
@@ -91,8 +91,8 @@ public class ConfigUtil {
         DataSourceUtil.init(url, username, password);
         success = true;
       } catch (SQLException e) {
-        LogUtil.error(DATASOURCE_CONFIG_ERROR);
-        LogUtil.error(e);
+        LogUtil.warn(DATASOURCE_CONFIG_ERROR);
+        LogUtil.warn(e);
         success = false;
       }
     }

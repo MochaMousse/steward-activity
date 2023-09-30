@@ -110,7 +110,7 @@ public class DateTimeUtil {
     try {
       date = format.parse(str);
     } catch (ParseException e) {
-      LogUtil.error(e);
+      LogUtil.warn(e);
     }
     return date;
   }

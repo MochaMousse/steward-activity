@@ -22,10 +22,9 @@ import static cc.mousse.steward.activity.constant.TextConstant.*;
 public class RobotService {
   private RobotService() {}
 
-  public static void sendMessage(int month, int day) {
+  public static void sendMessage(int year, int month, int day) {
     Server server = BasicCache.getInstance().getServer();
     String qqGroupId = ConfigCache.getMessageQqGroupId();
-    int year = DateTimeUtil.year();
     starOfDay(server, qqGroupId, year, month, day);
     starOfMonth(server, qqGroupId, year, month);
   }

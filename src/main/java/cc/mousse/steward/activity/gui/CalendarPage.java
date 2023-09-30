@@ -87,7 +87,7 @@ public class CalendarPage implements ViewPage {
       try {
         thatDay = CalendarUtil.lunarDayOfDate(thisYear, month, day);
       } catch (ParseException e) {
-        LogUtil.error(e);
+        LogUtil.warn(e);
       }
       ItemStack item;
       if (signRecord.contains(day)) {

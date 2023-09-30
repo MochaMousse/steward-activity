@@ -37,7 +37,7 @@ public class DataSourceUtil {
       }
       preparedStatement.execute();
     } catch (Exception e) {
-      LogUtil.error(e);
+      LogUtil.warn(e);
     } finally {
       closeConnection(null, preparedStatement);
     }
@@ -53,7 +53,7 @@ public class DataSourceUtil {
       }
       preparedStatement.executeUpdate();
     } catch (Exception e) {
-      LogUtil.error(e);
+      LogUtil.warn(e);
     } finally {
       closeConnection(null, preparedStatement);
     }
@@ -80,7 +80,7 @@ public class DataSourceUtil {
         result.add(GSON.fromJson(GSON.toJson(rowData), clazz));
       }
     } catch (Exception e) {
-      LogUtil.error(e);
+      LogUtil.warn(e);
     } finally {
       closeConnection(resultSet, preparedStatement);
     }
@@ -102,7 +102,7 @@ public class DataSourceUtil {
         result.add((String) resultSet.getObject(1));
       }
     } catch (Exception e) {
-      LogUtil.error(e);
+      LogUtil.warn(e);
     } finally {
       closeConnection(resultSet, preparedStatement);
     }
@@ -114,14 +114,14 @@ public class DataSourceUtil {
       try {
         resultSet.close();
       } catch (SQLException e) {
-        LogUtil.error(e);
+        LogUtil.warn(e);
       }
     }
     if (preparedStatement != null) {
       try {
         preparedStatement.close();
       } catch (SQLException e) {
-        LogUtil.error(e);
+        LogUtil.warn(e);
       }
     }
   }

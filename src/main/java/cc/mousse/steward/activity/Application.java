@@ -63,7 +63,7 @@ public final class Application extends JavaPlugin {
     RegisteredServiceProvider<ViewGuide> rsp =
         Bukkit.getServer().getServicesManager().getRegistration(ViewGuide.class);
     if (rsp == null) {
-      LogUtil.error(GUI_NOTFOUND);
+      LogUtil.warn(GUI_NOTFOUND);
     } else {
       ViewCache.setGuide(rsp.getProvider());
       ViewCache.getGuide().addView(ViewCache.CALENDAR, new CalendarView(BasicCache.DISPLAY_NAME));

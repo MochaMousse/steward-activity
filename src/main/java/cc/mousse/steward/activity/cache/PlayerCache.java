@@ -7,6 +7,8 @@ import cc.mousse.steward.activity.service.InfoService;
 import cc.mousse.steward.activity.service.RecordService;
 import cc.mousse.steward.activity.service.RobotService;
 import cc.mousse.steward.activity.util.DateTimeUtil;
+import cc.mousse.steward.activity.util.LogUtil;
+import cc.mousse.steward.activity.util.StringUtil;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -75,10 +77,13 @@ public class PlayerCache {
           }
           CompletableFuture.runAsync(
               () -> {
-                RobotService.sendMessage(cacheMonth, cacheDay);
-                RobotService.dailyReport(cacheYear, cacheMonth, cacheDay);
+                RobotService.sendMessage(cacheYear, cacheMonth, cacheDay);
+                LogUtil.info(
+                    StringUtil.removeStyle(
+                        RobotService.dailyReport(cacheYear, cacheMonth, cacheDay)));
                 if (cacheMonth != thisMonth) {
-                  RobotService.monthlyReport(cacheYear, cacheMonth);
+                  LogUtil.info(
+                      StringUtil.removeStyle(RobotService.monthlyReport(cacheYear, cacheMonth)));
                 }
               });
           BasicCache.setDay(today);

@@ -71,8 +71,8 @@ public class RobotUtil {
         str = response.body().string();
       }
     } catch (IOException e) {
-      LogUtil.error(GROUP_MESSAGE_SEND_ERROR);
-      LogUtil.error(e);
+      LogUtil.warn(GROUP_MESSAGE_SEND_ERROR);
+      LogUtil.warn(e);
     }
     return str;
   }
