@@ -155,7 +155,7 @@ public class RobotService {
   private static String reportAndReturn(String title, List<String> messages) {
     String groupId = ConfigCache.getReportQqGroupId();
     if (messages.isEmpty()) {
-      RobotUtil.sendGroupMessage(groupId, title);
+      RobotUtil.sendGroupMessage(groupId, StringUtil.removeStyle(title));
       return title;
     }
     StringBuilder builder = new StringBuilder(title);
