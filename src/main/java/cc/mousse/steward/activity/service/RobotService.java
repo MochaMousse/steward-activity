@@ -39,8 +39,7 @@ public class RobotService {
         if (starOfDayReward != null) {
           list.forEach(
               playerName ->
-                  BalanceUtil.add(
-                      Objects.requireNonNull(server.getPlayer(playerName)), starOfDayReward));
+                  BalanceUtil.add((Player) server.getOfflinePlayer(playerName), starOfDayReward));
         }
       }
     }
@@ -55,9 +54,15 @@ public class RobotService {
       if (starOfMonthReward != null) {
         list.forEach(
             playerName ->
-                BalanceUtil.add(
-                    Objects.requireNonNull(server.getPlayer(playerName)), starOfMonthReward));
+                BalanceUtil.add((Player) server.getOfflinePlayer(playerName), starOfMonthReward));
       }
+    }
+  }
+
+  public static void sendReport(int year, int month, int day) {
+    LogUtil.info(StringUtil.removeStyle(RobotService.dailyReport(year, month, day)));
+    if (DateTimeUtil.month() != month) {
+      LogUtil.info(StringUtil.removeStyle(RobotService.monthlyReport(year, month)));
     }
   }
 
@@ -74,12 +79,14 @@ public class RobotService {
           StringUtil.replace(
               DAILY_REPORT_NONE, String.valueOf(year), String.valueOf(month), String.valueOf(day));
     } else {
+      int cnt = 0;
       int playerCount = list.size();
       long durationCount = 0L;
-      int cnt = 0;
+      List<Long> durations = new ArrayList<>(playerCount);
       for (RecordDo recordDo : list) {
         Long duration = recordDo.getDuration();
         durationCount += duration;
+        durations.add(duration);
         builder.append(
             StringUtil.replace(
                 DAILY_REPORT_INFO, recordDo.getPlayer(), DateTimeUtil.duration(duration)));
@@ -97,7 +104,8 @@ public class RobotService {
               String.valueOf(month),
               String.valueOf(day),
               String.valueOf(playerCount),
-              DateTimeUtil.duration(durationCount / playerCount));
+              DateTimeUtil.duration(durationCount / playerCount),
+              DateTimeUtil.duration(median(durations)));
     }
     return reportAndReturn(title, messages);
   }
@@ -112,6 +120,7 @@ public class RobotService {
     } else {
       int playerCount = list.size();
       long durationCount = 0L;
+      List<Long> durations = new ArrayList<>(playerCount);
       Map<String, long[]> map = new HashMap<>(list.size() >>> 2);
       for (RecordDo recordDo : list) {
         String player = recordDo.getPlayer();
@@ -121,6 +130,7 @@ public class RobotService {
         info[0] += 1;
         info[1] += duration;
         durationCount += duration;
+        durations.add(duration);
       }
       List<String> keys = map.keySet().stream().sorted().toList();
       int cnt = 0;
@@ -147,7 +157,8 @@ public class RobotService {
               String.valueOf(month),
               String.valueOf(map.size()),
               String.valueOf(playerCount),
-              DateTimeUtil.duration(durationCount / playerCount));
+              DateTimeUtil.duration(durationCount / playerCount),
+              DateTimeUtil.duration(median(durations)));
     }
     return reportAndReturn(title, messages);
   }
@@ -198,5 +209,15 @@ public class RobotService {
         }
       }
     }
+  }
+
+  private static Long median(List<Long> list) {
+    int len = list.size();
+    if (len == 0) {
+      return 0L;
+    }
+    int mid = len >>> 1;
+    Collections.sort(list);
+    return (len & 1) == 1 ? list.get(mid) : (list.get(mid - 1) + list.get(mid)) >>> 1;
   }
 }

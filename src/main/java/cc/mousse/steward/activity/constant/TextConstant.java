@@ -124,6 +124,13 @@ public class TextConstant {
           .concat(GRAY)
           .concat("平均在线")
           .concat(WHITE)
+          .concat(REPLACE)
+          .concat(DARK_GRAY)
+          .concat(COMMA)
+          .concat(BLANK)
+          .concat(GRAY)
+          .concat("中位在线")
+          .concat(WHITE)
           .concat(REPLACE);
 
   public static final String DAILY_REPORT_INFO =
@@ -158,6 +165,9 @@ public class TextConstant {
           .concat(WHITE)
           .concat(REPLACE)
           .concat("人")
+          .concat(DARK_GRAY)
+          .concat(SLASH)
+          .concat(WHITE)
           .concat(REPLACE)
           .concat("人次")
           .concat(DARK_GRAY)
@@ -165,6 +175,13 @@ public class TextConstant {
           .concat(BLANK)
           .concat(GRAY)
           .concat("平均在线")
+          .concat(WHITE)
+          .concat(REPLACE)
+          .concat(DARK_GRAY)
+          .concat(COMMA)
+          .concat(BLANK)
+          .concat(GRAY)
+          .concat("中位在线")
           .concat(WHITE)
           .concat(REPLACE);
   public static final String MONTHLY_REPORT_INFO =
@@ -183,7 +200,7 @@ public class TextConstant {
           .concat(TOSTRING_COLON)
           .concat(REPLACE)
           .concat(TOSTRING_SPLIT)
-          .concat("平均在线时长")
+          .concat("平均在线")
           .concat(TOSTRING_COLON)
           .concat(REPLACE)
           .concat(TOSTRING_NED);

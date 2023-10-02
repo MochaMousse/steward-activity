@@ -77,13 +77,15 @@ public class PlayerCache {
           }
           CompletableFuture.runAsync(
               () -> {
-                RobotService.sendMessage(cacheYear, cacheMonth, cacheDay);
-                LogUtil.info(
-                    StringUtil.removeStyle(
-                        RobotService.dailyReport(cacheYear, cacheMonth, cacheDay)));
-                if (cacheMonth != thisMonth) {
-                  LogUtil.info(
-                      StringUtil.removeStyle(RobotService.monthlyReport(cacheYear, cacheMonth)));
+                try {
+                  RobotService.sendMessage(cacheYear, cacheMonth, cacheDay);
+                } catch (Exception e) {
+                  LogUtil.warn(e);
+                }
+                try {
+                  RobotService.sendReport(cacheYear, cacheMonth, cacheDay);
+                } catch (Exception e) {
+                  LogUtil.warn(e);
                 }
               });
           BasicCache.setDay(today);
