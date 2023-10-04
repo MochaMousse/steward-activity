@@ -39,7 +39,9 @@ public class RobotService {
         if (starOfDayReward != null) {
           list.forEach(
               playerName ->
-                  BalanceUtil.add((Player) server.getOfflinePlayer(playerName), starOfDayReward));
+                  BalanceUtil.add(
+                      Objects.requireNonNull(server.getOfflinePlayer(playerName)),
+                      starOfDayReward));
         }
       }
     }
@@ -54,7 +56,9 @@ public class RobotService {
       if (starOfMonthReward != null) {
         list.forEach(
             playerName ->
-                BalanceUtil.add((Player) server.getOfflinePlayer(playerName), starOfMonthReward));
+                BalanceUtil.add(
+                    Objects.requireNonNull(server.getOfflinePlayer(playerName)),
+                    starOfMonthReward));
       }
     }
   }
