@@ -8,7 +8,6 @@ import cc.mousse.steward.activity.service.RecordService;
 import cc.mousse.steward.activity.service.RobotService;
 import cc.mousse.steward.activity.util.DateTimeUtil;
 import cc.mousse.steward.activity.util.LogUtil;
-import cc.mousse.steward.activity.util.StringUtil;
 
 import java.util.*;
 import java.util.concurrent.CompletableFuture;
@@ -61,40 +60,38 @@ public class PlayerCache {
     int today = DateTimeUtil.day();
     int thisMonth = DateTimeUtil.month();
     if (today != BasicCache.getDay()) {
-      synchronized (PlayerCache.class) {
-        int cacheDay = BasicCache.getDay();
-        int cacheMonth = BasicCache.getMonth();
-        int cacheYear = DateTimeUtil.year();
-        if (today != cacheDay) {
-          if (DATA_CACHE.containsKey(cacheDay)) {
-            Iterator<Data> iter = DATA_CACHE.get(cacheDay).values().iterator();
-            while (iter.hasNext()) {
-              String playerName = iter.next().getPlayer();
-              flush(cacheDay, playerName);
-              init(playerName);
-            }
-            DATA_CACHE.remove(cacheDay);
-          }
-          CompletableFuture.runAsync(
-              () -> {
-                try {
-                  RobotService.sendMessage(cacheYear, cacheMonth, cacheDay);
-                } catch (Exception e) {
-                  LogUtil.warn(e);
-                }
-                try {
-                  RobotService.sendReport(cacheYear, cacheMonth, cacheDay);
-                } catch (Exception e) {
-                  LogUtil.warn(e);
-                }
-              });
-          BasicCache.setDay(today);
-          BasicCache.setMonth(thisMonth);
-          BasicCache.setYear(DateTimeUtil.year());
-          DailyCache.clear();
+      return;
+    }
+    int cacheDay = BasicCache.getDay();
+    int cacheMonth = BasicCache.getMonth();
+    int cacheYear = DateTimeUtil.year();
+    if (DATA_CACHE.containsKey(cacheDay)) {
+      for (Data playerData : DATA_CACHE.get(cacheDay).values()) {
+        if (playerData != null) {
+          String playerName = playerData.getPlayer();
+          flush(cacheDay, playerName);
+          init(playerName);
         }
       }
+      DATA_CACHE.remove(cacheDay);
     }
+    CompletableFuture.runAsync(
+        () -> {
+          try {
+            RobotService.sendMessage(cacheYear, cacheMonth, cacheDay);
+          } catch (Exception e) {
+            LogUtil.warn(e);
+          }
+          try {
+            RobotService.sendReport(cacheYear, cacheMonth, cacheDay);
+          } catch (Exception e) {
+            LogUtil.warn(e);
+          }
+        });
+    BasicCache.setDay(today);
+    BasicCache.setMonth(thisMonth);
+    BasicCache.setYear(DateTimeUtil.year());
+    DailyCache.clear();
   }
 
   public static void flush(String playerName) {
