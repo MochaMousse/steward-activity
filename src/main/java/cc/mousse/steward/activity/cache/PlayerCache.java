@@ -20,7 +20,8 @@ import static cc.mousse.steward.activity.constant.StyleConstant.*;
  * @author PhineasZ
  */
 public class PlayerCache {
-  private static final Map<Integer, Map<String, Data>> DATA_CACHE = new ConcurrentHashMap<>(2);
+  private static final Map<Integer, ConcurrentHashMap<String, Data>> DATA_CACHE =
+      new ConcurrentHashMap<>(2);
 
   private PlayerCache() {}
 
@@ -59,7 +60,7 @@ public class PlayerCache {
   public static void flush() {
     int today = DateTimeUtil.day();
     int thisMonth = DateTimeUtil.month();
-    if (today != BasicCache.getDay()) {
+    if (today == BasicCache.getDay()) {
       return;
     }
     int cacheDay = BasicCache.getDay();
@@ -141,7 +142,7 @@ public class PlayerCache {
 
   public static int init() {
     int today = DateTimeUtil.day();
-    DATA_CACHE.putIfAbsent(today, new HashMap<>(8));
+    DATA_CACHE.putIfAbsent(today, new ConcurrentHashMap<>(8));
     return today;
   }
 
