@@ -91,8 +91,8 @@ public class Event implements Listener {
     int signDay = Integer.parseInt(command.split(BLANK)[1]);
     PlayerCache.Data playerData = PlayerCache.get(player.getName());
     Map<Integer, Set<Integer>> signedLog = playerData.getSignRecord();
-    int thisMonth = DateTimeUtil.month();
     int today = DateTimeUtil.day();
+    int thisMonth = DateTimeUtil.month();
     int chance = playerData.getChance();
     if (!signedLog.get(thisMonth).contains(signDay) && today >= signDay) {
       boolean ok = false;
@@ -101,16 +101,14 @@ public class Event implements Listener {
         BalanceUtil.add(player, ConfigCache.getSignReward());
         ok = true;
       } else if (chance > 0) {
-        Integer state = playerData.getState().getCode();
-        playerData.setDaysOfMonth(playerData.getDaysOfMonth() - state + 1);
-        playerData.setDaysOfTotal(playerData.getDaysOfTotal() - state + 1);
         playerData.setChance(playerData.getChance() - 1);
-        state = StateEnum.RESIGNED.getCode();
+        playerData.setDaysOfMonth(playerData.getDaysOfMonth() - playerData.getToday() + 1);
+        playerData.setDaysOfTotal(playerData.getDaysOfTotal() - playerData.getToday() + 1);
         String playerName = player.getName();
         Date date = DateTimeUtil.date(DateTimeUtil.year(), thisMonth, signDay);
         RecordDo recordDo = RecordService.one(playerName, date);
         if (recordDo == null) {
-          recordDo = new RecordDo(null, date, state, playerName, -1L);
+          recordDo = new RecordDo(null, date, StateEnum.RESIGNED.getCode(), playerName, -1L);
           RecordService.add(recordDo);
         } else {
           recordDo.setState(StateEnum.RESIGNED.getCode());

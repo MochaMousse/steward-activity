@@ -51,8 +51,8 @@ public class PlayerCache {
         .values()
         .forEach(
             map -> {
-              for (Data data : map.values()) {
-                flush(data);
+              for (Data playerData : map.values()) {
+                flush(playerData);
               }
             });
   }
@@ -181,11 +181,11 @@ public class PlayerCache {
       if (DateTimeUtil.month(lastLogin) == DateTimeUtil.month()) {
         chance = infoDo.getChance();
         daysOfMonth = infoDo.getDaysOfMonth();
+        daysOfMonthReward = infoDo.getDaysOfMonthReward();
         RecordDo recordDo = RecordService.one(player, DateTimeUtil.date());
         if (recordDo != null) {
           state = StateEnum.ofCode(recordDo.getState());
           durationOfDay = recordDo.getDuration();
-          daysOfMonthReward = infoDo.getDaysOfMonthReward();
           durationOfDayReward = infoDo.getDurationOfDayReward();
         }
       }
@@ -199,12 +199,16 @@ public class PlayerCache {
               });
     }
 
+    public int getToday() {
+      return StateEnum.UNSIGNED.equals(state) ? 0 : 1;
+    }
+
     public int getDaysOfMonth() {
-      return daysOfMonth + state.getCode();
+      return daysOfMonth + getToday();
     }
 
     public int getDaysOfTotal() {
-      return daysOfTotal + state.getCode();
+      return daysOfTotal + getToday();
     }
 
     public long getDurationOnline() {
