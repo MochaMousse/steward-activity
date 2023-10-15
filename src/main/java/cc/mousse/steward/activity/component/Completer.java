@@ -67,7 +67,7 @@ public class Completer implements TabCompleter {
       if (signRecord.isEmpty()) {
         tab.add(NULL);
       } else {
-        tab.addAll(signRecord.stream().map(String::valueOf).toList());
+        tab.addAll(signRecord.stream().sorted(Comparator.reverseOrder()).map(String::valueOf).toList());
       }
     } catch (NumberFormatException e) {
       tab.add(DATE_FORMAT_ERROR);
