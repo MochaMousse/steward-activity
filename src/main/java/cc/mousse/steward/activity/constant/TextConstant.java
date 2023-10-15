@@ -11,6 +11,7 @@ public class TextConstant {
   private TextConstant() {}
 
   public static final String EMPTY = "";
+  public static final String ZERO = "0";
   public static final String DOT = ".";
   public static final String RETURN = "\n";
   public static final String BLANK = " ";

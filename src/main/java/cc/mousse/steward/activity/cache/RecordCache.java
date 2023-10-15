@@ -43,25 +43,19 @@ public class RecordCache {
   public static List<Integer> getYears(String playerName) {
     playerName = playerName.toLowerCase(Locale.ROOT);
     put(playerName, null, null, null, null);
-    return RECORD_CACHE.get(playerName).keySet().stream()
-        .sorted(Comparator.reverseOrder())
-        .toList();
+    return RECORD_CACHE.get(playerName).keySet().stream().toList();
   }
 
   public static List<Integer> getMonths(String playerName, Integer year) {
     playerName = playerName.toLowerCase(Locale.ROOT);
     put(playerName, year, null, null, null);
-    return RECORD_CACHE.get(playerName).get(year).keySet().stream()
-        .sorted(Comparator.reverseOrder())
-        .toList();
+    return RECORD_CACHE.get(playerName).get(year).keySet().stream().toList();
   }
 
   public static List<Integer> getDays(String playerName, Integer year, Integer month) {
     playerName = playerName.toLowerCase(Locale.ROOT);
     put(playerName, year, month, null, null);
-    return RECORD_CACHE.get(playerName).get(year).get(month).keySet().stream()
-        .sorted(Comparator.reverseOrder())
-        .toList();
+    return RECORD_CACHE.get(playerName).get(year).get(month).keySet().stream().toList();
   }
 
   public static void putYears(String playerName, List<Integer> years) {

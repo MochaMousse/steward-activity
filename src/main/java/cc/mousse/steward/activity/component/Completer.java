@@ -67,7 +67,8 @@ public class Completer implements TabCompleter {
       if (signRecord.isEmpty()) {
         tab.add(NULL);
       } else {
-        tab.addAll(signRecord.stream().sorted(Comparator.reverseOrder()).map(String::valueOf).toList());
+        tab.addAll(
+            signRecord.stream().sorted().map(num -> (num < 10 ? ZERO : BLANK) + num).toList());
       }
     } catch (NumberFormatException e) {
       tab.add(DATE_FORMAT_ERROR);
@@ -102,7 +103,7 @@ public class Completer implements TabCompleter {
     if (RecordCache.containsMonth(playerName, year, month)) {
       signRecord = RecordCache.getDays(playerName, year, month);
     } else {
-      signRecord = RecordService.day(playerName, year, month);
+      signRecord = new ArrayList<>(RecordService.day(playerName, year, month));
       int today = BasicCache.getDay();
       if (PlayerCache.contains(playerName) && !signRecord.contains(today)) {
         signRecord.add(today);
