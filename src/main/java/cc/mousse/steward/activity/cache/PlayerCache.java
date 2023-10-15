@@ -199,18 +199,6 @@ public class PlayerCache {
               });
     }
 
-    public int getToday() {
-      return StateEnum.UNSIGNED.equals(state) ? 0 : 1;
-    }
-
-    public int getDaysOfMonth() {
-      return daysOfMonth + getToday();
-    }
-
-    public int getDaysOfTotal() {
-      return daysOfTotal + getToday();
-    }
-
     public long getDurationOnline() {
       return System.currentTimeMillis() - loginTime;
     }

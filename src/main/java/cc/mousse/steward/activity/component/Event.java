@@ -102,8 +102,6 @@ public class Event implements Listener {
         ok = true;
       } else if (chance > 0) {
         playerData.setChance(playerData.getChance() - 1);
-        playerData.setDaysOfMonth(playerData.getDaysOfMonth() - playerData.getToday() + 1);
-        playerData.setDaysOfTotal(playerData.getDaysOfTotal() - playerData.getToday() + 1);
         String playerName = player.getName();
         Date date = DateTimeUtil.date(DateTimeUtil.year(), thisMonth, signDay);
         RecordDo recordDo = RecordService.one(playerName, date);
@@ -117,6 +115,8 @@ public class Event implements Listener {
         ok = true;
       }
       if (ok) {
+        playerData.setDaysOfMonth(playerData.getDaysOfMonth() + 1);
+        playerData.setDaysOfTotal(playerData.getDaysOfTotal() + 1);
         signedLog.get(thisMonth).add(signDay);
         player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, 1F, 1F);
       }
