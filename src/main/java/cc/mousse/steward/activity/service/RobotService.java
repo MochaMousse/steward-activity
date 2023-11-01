@@ -66,6 +66,7 @@ public class RobotService {
   public static void sendReport(int year, int month, int day) {
     LogUtil.info(StringUtil.removeStyle(RobotService.dailyReport(year, month, day)));
     if (DateTimeUtil.month() != month) {
+      LogUtil.info("New month!");
       LogUtil.info(StringUtil.removeStyle(RobotService.monthlyReport(year, month)));
     }
   }
