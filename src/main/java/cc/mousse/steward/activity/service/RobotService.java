@@ -64,13 +64,13 @@ public class RobotService {
   }
 
   public static void sendReport(int year, int month, int day) {
-    LogUtil.info(StringUtil.removeStyle(RobotService.dailyReport(year, month, day)));
+    LogUtil.info(StringUtil.removeStyle(RobotService.dailyReport(year, month, day, true)));
     if (DateTimeUtil.month() != month) {
-      LogUtil.info(StringUtil.removeStyle(RobotService.monthlyReport(year, month)));
+      LogUtil.info(StringUtil.removeStyle(RobotService.monthlyReport(year, month, true)));
     }
   }
 
-  public static String dailyReport(int year, int month, int day) {
+  public static String dailyReport(int year, int month, int day, boolean both) {
     List<RecordDo> list =
         RecordService.list(year, month, day).stream()
             .sorted(Comparator.comparing(RecordDo::getPlayer))
@@ -111,10 +111,10 @@ public class RobotService {
               DateTimeUtil.duration(durationCount / playerCount),
               DateTimeUtil.duration(median(durations)));
     }
-    return reportAndReturn(title, messages);
+    return reportAndReturn(title, messages, both);
   }
 
-  public static String monthlyReport(int year, int month) {
+  public static String monthlyReport(int year, int month, boolean both) {
     List<RecordDo> list = RecordService.list(year, month);
     String title;
     List<String> messages = new ArrayList<>(2);
@@ -164,18 +164,27 @@ public class RobotService {
               DateTimeUtil.duration(durationCount / playerCount),
               DateTimeUtil.duration(median(durations)));
     }
-    return reportAndReturn(title, messages);
+    return reportAndReturn(title, messages, both);
   }
 
-  private static String reportAndReturn(String title, List<String> messages) {
-    String groupId = ConfigCache.getReportQqGroupId();
+  private static String reportAndReturn(String title, List<String> messages, boolean both) {
+    String reportGroupId = ConfigCache.getReportQqGroupId();
+    String messageGroupId = ConfigCache.getMessageQqGroupId();
     if (messages.isEmpty()) {
-      RobotUtil.sendGroupMessage(groupId, StringUtil.removeStyle(title));
+      String content = StringUtil.removeStyle(title);
+      RobotUtil.sendGroupMessage(reportGroupId, content);
+      if (both) {
+        RobotUtil.sendGroupMessage(messageGroupId, content);
+      }
       return title;
     }
     StringBuilder builder = new StringBuilder(title);
     for (String message : messages) {
-      RobotUtil.sendGroupMessage(groupId, StringUtil.removeStyle(title.concat(message)));
+      String content = StringUtil.removeStyle(title.concat(message));
+      RobotUtil.sendGroupMessage(reportGroupId, content);
+      if (both) {
+        RobotUtil.sendGroupMessage(messageGroupId, content);
+      }
       builder.append(message);
     }
     return builder.toString();

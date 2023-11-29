@@ -85,7 +85,7 @@ public class Command implements CommandExecutor {
     if (len == 1) {
       ChatUtil.message(
           sender,
-          RobotService.dailyReport(DateTimeUtil.year(), DateTimeUtil.month(), DateTimeUtil.day()));
+          RobotService.dailyReport(DateTimeUtil.year(), DateTimeUtil.month(), DateTimeUtil.day(), false));
       return true;
     }
     String message;
@@ -99,8 +99,8 @@ public class Command implements CommandExecutor {
         day = len == LEN_4 ? Integer.parseInt(args[3]) : 0;
         message =
             day == 0
-                ? RobotService.monthlyReport(year, month)
-                : RobotService.dailyReport(year, month, day);
+                ? RobotService.monthlyReport(year, month, false)
+                : RobotService.dailyReport(year, month, day, false);
       } catch (NumberFormatException e) {
         message = DATE_FORMAT_ERROR;
       }
