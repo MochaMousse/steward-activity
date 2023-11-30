@@ -1,11 +1,9 @@
 package cc.mousse.steward.activity.component;
 
-import cc.mousse.steward.activity.bean.RecordDo;
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import cc.mousse.steward.activity.cache.*;
 import cc.mousse.steward.activity.constant.CommandConstant;
-import cc.mousse.steward.activity.constant.StateEnum;
-import cc.mousse.steward.activity.service.RecordService;
-import cc.mousse.steward.activity.util.BalanceUtil;
 import cc.mousse.steward.activity.util.DateTimeUtil;
 import net.kyori.adventure.text.event.ClickEvent;
 import org.apache.commons.lang3.StringUtils;
@@ -19,13 +17,6 @@ import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.ItemStack;
 import org.fireflyest.craftgui.event.ViewClickEvent;
 import org.fireflyest.util.ItemUtils;
-
-import java.util.Date;
-import java.util.List;
-import java.util.Map;
-import java.util.Set;
-
-import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 /**
  * @author PhineasZ
@@ -45,6 +36,9 @@ public class Event implements Listener {
                 ViewCache.getGuide().openView(player, ViewCache.CALENDAR, playerName);
                 DailyCache.add(playerName);
               }
+              if (ConfigCache.isAutoMode()) {
+                new Handler().sign(player, DateTimeUtil.day());
+              }
             });
   }
 
@@ -62,20 +56,21 @@ public class Event implements Listener {
       ItemStack item = event.getCurrentItem();
       // 获取点击数据
       String command = ItemUtils.getItemNbt(item, CommandConstant.COMMAND);
+      Handler handler = new Handler();
       if (StringUtils.isNotBlank(command)) {
         Player player = (Player) event.getWhoClicked();
         String playerName = player.getName();
         event.setRefresh(true);
         if (command.startsWith(CommandConstant.SIGN)) {
-          sign(player, command);
+          handler.sign(player, Integer.parseInt(command.split(BLANK)[1]));
         } else if (command.equals(CommandConstant.MONTH)) {
-          month(event, player);
+          handler.month(event, player);
         } else if (command.equals(CommandConstant.MENU)) {
           player.chat(SLASH.concat(CommandConstant.MENU));
         } else if (command.equals(CommandConstant.DAYS_REWARD)) {
-          daysReward(player);
+          handler.daysReward(player, false);
         } else if (command.equals(CommandConstant.DURATION_REWARD)) {
-          durationReward(player);
+          handler.durationReward(player, false);
         } else if (command.equals(CommandConstant.BACK)) {
           ViewCache.getGuide().openView(player, ViewCache.CALENDAR, playerName);
           player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_HIT, 1F, 1F);
@@ -84,99 +79,6 @@ public class Event implements Listener {
           player.playSound(player.getLocation(), Sound.BLOCK_AMETHYST_BLOCK_HIT, 1F, 1F);
         }
       }
-    }
-  }
-
-  private void sign(Player player, String command) {
-    int signDay = Integer.parseInt(command.split(BLANK)[1]);
-    PlayerCache.Data playerData = PlayerCache.get(player.getName());
-    Map<Integer, Set<Integer>> signedLog = playerData.getSignRecord();
-    int today = DateTimeUtil.day();
-    int thisMonth = DateTimeUtil.month();
-    int chance = playerData.getChance();
-    if (!signedLog.get(thisMonth).contains(signDay) && today >= signDay) {
-      boolean ok = false;
-      if (signDay == today) {
-        playerData.setState(StateEnum.SIGNED);
-        BalanceUtil.add(player, ConfigCache.getSignReward());
-        ok = true;
-      } else if (chance > 0) {
-        playerData.setChance(playerData.getChance() - 1);
-        String playerName = player.getName();
-        Date date = DateTimeUtil.date(DateTimeUtil.year(), thisMonth, signDay);
-        RecordDo recordDo = RecordService.one(playerName, date);
-        if (recordDo == null) {
-          recordDo = new RecordDo(null, date, StateEnum.RESIGNED.getCode(), playerName, -1L);
-          RecordService.add(recordDo);
-        } else {
-          recordDo.setState(StateEnum.RESIGNED.getCode());
-          RecordService.update(recordDo);
-        }
-        ok = true;
-      }
-      if (ok) {
-        playerData.setDaysOfMonth(playerData.getDaysOfMonth() + 1);
-        playerData.setDaysOfTotal(playerData.getDaysOfTotal() + 1);
-        signedLog.get(thisMonth).add(signDay);
-        player.playSound(player.getLocation(), Sound.ENTITY_FIREWORK_ROCKET_TWINKLE_FAR, 1F, 1F);
-      }
-    }
-  }
-
-  private void month(ViewClickEvent event, Player player) {
-    player.playSound(player.getLocation(), Sound.ITEM_BOOK_PAGE_TURN, 1F, 1F);
-    if (event.isRightClick()) {
-      ViewCache.getGuide().nextPage(player);
-    } else {
-      ViewCache.getGuide().prePage(player);
-    }
-  }
-
-  private void daysReward(Player player) {
-    List<Map.Entry<Integer, Integer>> daysReward = ConfigCache.getDaysReward();
-    if (!daysReward.isEmpty()) {
-      boolean flag = false;
-      String playerName = player.getName();
-      PlayerCache.Data playerData = PlayerCache.get(playerName);
-      for (Map.Entry<Integer, Integer> entry : daysReward) {
-        if (entry.getKey() > playerData.getDaysOfMonth()) {
-          break;
-        } else if (entry.getKey() > playerData.getDaysOfMonthReward()) {
-          playerData.setDaysOfMonthReward(entry.getKey());
-          BalanceUtil.add(player, entry.getValue());
-          flag = true;
-        }
-      }
-      player.playSound(
-          player.getLocation(),
-          flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,
-          1F,
-          1F);
-      ViewCache.getGuide().openView(player, ViewCache.DAYS_REWARD, playerName);
-    }
-  }
-
-  private void durationReward(Player player) {
-    List<Map.Entry<Long, Integer>> durationReward = ConfigCache.getDurationReward();
-    if (!durationReward.isEmpty()) {
-      boolean flag = false;
-      String playerName = player.getName();
-      PlayerCache.Data playerData = PlayerCache.get(playerName);
-      for (Map.Entry<Long, Integer> entry : durationReward) {
-        if (entry.getKey() > playerData.getDurationOfDay()) {
-          break;
-        } else if (entry.getKey() > playerData.getDurationOfDayReward()) {
-          BalanceUtil.add(player, entry.getValue());
-          playerData.setDurationOfDayReward(entry.getKey());
-          flag = true;
-        }
-      }
-      player.playSound(
-          player.getLocation(),
-          flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,
-          1F,
-          1F);
-      ViewCache.getGuide().openView(player, ViewCache.DURATION_REWARD, playerName);
     }
   }
 }

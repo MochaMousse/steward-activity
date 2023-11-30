@@ -3,6 +3,9 @@ mysql:
   username: root
   password: root
 
+# 自动签到模式
+auto-mode: true
+
 # QQ机器人API地址
 go-cqhttp: http://localhost:8080
 

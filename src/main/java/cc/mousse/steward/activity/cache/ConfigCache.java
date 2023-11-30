@@ -11,6 +11,7 @@ import java.util.*;
 public class ConfigCache {
   private ConfigCache() {}
 
+  @Getter @Setter private static volatile boolean autoMode;
   @Getter @Setter private static volatile boolean showOnFirstLogin;
   @Getter @Setter private static volatile int chance;
   @Getter @Setter private static volatile int signReward;
@@ -48,12 +49,14 @@ public class ConfigCache {
   }
 
   public static class Key {
+
     private Key() {}
 
     private static final String MYSQL = "mysql.";
     public static final String MYSQL_URL = MYSQL.concat("url");
     public static final String MYSQL_USERNAME = MYSQL.concat("username");
     public static final String MYSQL_PASSWORD = MYSQL.concat("password");
+    public static final String AUTO_MODE = "auto-mode";
     public static final String GO_CQ_HTTP_URL = "go-cqhttp";
     private static final String STAR_OF_DAY = "star-of-day.";
     private static final String STAR_OF_MONTH = "month.";

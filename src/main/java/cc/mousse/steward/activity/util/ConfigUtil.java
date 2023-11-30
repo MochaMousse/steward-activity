@@ -50,6 +50,7 @@ public class ConfigUtil {
   }
 
   private static void loadActivity() {
+    ConfigCache.setAutoMode(config.getBoolean(Key.AUTO_MODE));
     ConfigCache.setTaskPeriod(config.getInt(Key.TASK_PERIOD));
     ConfigCache.setShowOnFirstLogin(config.getBoolean(Key.SHOW_ON_FIRST_LOGIN));
     ConfigCache.setChance(config.getInt(Key.CHANCE));
