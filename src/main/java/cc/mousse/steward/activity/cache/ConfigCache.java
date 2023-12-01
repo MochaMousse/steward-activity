@@ -59,7 +59,7 @@ public class ConfigCache {
     public static final String AUTO_MODE = "auto-mode";
     public static final String GO_CQ_HTTP_URL = "go-cqhttp";
     private static final String STAR_OF_DAY = "star-of-day.";
-    private static final String STAR_OF_MONTH = "month.";
+    private static final String STAR_OF_MONTH = "star-of-month.";
     private static final String MESSAGE = "message";
     private static final String REWARD = "reward";
     public static final String STAR_OF_DAY_MESSAGE = STAR_OF_DAY.concat(MESSAGE);
