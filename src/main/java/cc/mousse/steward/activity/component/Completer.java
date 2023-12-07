@@ -68,7 +68,7 @@ public class Completer implements TabCompleter {
         tab.add(NULL);
       } else {
         tab.addAll(
-            signRecord.stream().sorted().map(num -> (num < 10 ? ZERO : BLANK) + num).toList());
+            signRecord.stream().sorted().map(num -> (num < 10 ? ZERO : EMPTY) + num).toList());
       }
     } catch (NumberFormatException e) {
       tab.add(DATE_FORMAT_ERROR);
