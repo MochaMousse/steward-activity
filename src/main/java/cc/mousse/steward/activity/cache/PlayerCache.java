@@ -65,7 +65,7 @@ public class PlayerCache {
     }
     int cacheDay = BasicCache.getDay();
     int cacheMonth = BasicCache.getMonth();
-    int cacheYear = DateTimeUtil.year();
+    int cacheYear = BasicCache.getYear();
     if (DATA_CACHE.containsKey(cacheDay)) {
       for (Data playerData : DATA_CACHE.get(cacheDay).values()) {
         if (playerData != null) {
