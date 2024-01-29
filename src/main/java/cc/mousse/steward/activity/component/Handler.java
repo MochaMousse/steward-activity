@@ -80,13 +80,15 @@ public class Handler {
           flag = true;
         }
       }
-      player.playSound(
-          player.getLocation(),
-          flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,
-          1F,
-          1F);
       if (!isAuto) {
         ViewCache.getGuide().openView(player, ViewCache.DAYS_REWARD, playerName);
+        player.playSound(
+            player.getLocation(),
+            flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,
+            1F,
+            1F);
+      } else if (flag) {
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
       }
     }
   }
@@ -106,13 +108,15 @@ public class Handler {
           flag = true;
         }
       }
-      player.playSound(
-          player.getLocation(),
-          flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,
-          1F,
-          1F);
       if (!isAuto) {
         ViewCache.getGuide().openView(player, ViewCache.DURATION_REWARD, playerName);
+        player.playSound(
+            player.getLocation(),
+            flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,
+            1F,
+            1F);
+      } else if (flag) {
+        player.playSound(player.getLocation(), Sound.ENTITY_PLAYER_LEVELUP, 1F, 1F);
       }
     }
   }
