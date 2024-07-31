@@ -1,21 +1,20 @@
 package cc.mousse.steward.activity.util;
 
+import static cc.mousse.steward.activity.cache.ConfigCache.Key;
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import cc.mousse.steward.activity.Application;
 import cc.mousse.steward.activity.cache.BasicCache;
 import cc.mousse.steward.activity.cache.ConfigCache;
+import java.sql.SQLException;
+import java.util.HashMap;
+import java.util.Map;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.configuration.file.FileConfiguration;
 
-import java.sql.SQLException;
-import java.util.HashMap;
-import java.util.Map;
-
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-import static cc.mousse.steward.activity.cache.ConfigCache.Key;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class ConfigUtil {
   private static FileConfiguration config;
@@ -57,7 +56,7 @@ public class ConfigUtil {
     ConfigCache.setSignReward(config.getInt(Key.SIGN_REWARD));
     ConfigCache.setStarOfDayReward(config.getInt(Key.STAR_OF_DAY_REWARD));
     ConfigCache.setStarOfMonthReward(config.getInt(Key.STAR_OF_MONTH_REWARD));
-    Map<Integer, Integer> daysRewardMap = new HashMap<>(32);
+    Map<Integer, Integer> daysRewardMap = HashMap.newHashMap(32);
     config.getMapList(Key.DAYS_REWARD).stream()
         .map(Map::entrySet)
         .forEach(
@@ -66,7 +65,7 @@ public class ConfigUtil {
                     entry ->
                         daysRewardMap.put((Integer) entry.getKey(), (Integer) entry.getValue())));
     ConfigCache.setDaysReward(daysRewardMap);
-    Map<Integer, Integer> durationRewardMap = new HashMap<>(32);
+    Map<Integer, Integer> durationRewardMap = HashMap.newHashMap(32);
     config.getMapList(Key.DURATION_REWARD).stream()
         .map(Map::entrySet)
         .forEach(

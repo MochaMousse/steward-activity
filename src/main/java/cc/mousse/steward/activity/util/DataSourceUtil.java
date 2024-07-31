@@ -2,12 +2,11 @@ package cc.mousse.steward.activity.util;
 
 import cc.mousse.steward.activity.cache.BasicCache;
 import com.google.gson.Gson;
-
 import java.sql.*;
 import java.util.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class DataSourceUtil {
   private static final Gson GSON = BasicCache.GSON;
@@ -24,7 +23,7 @@ public class DataSourceUtil {
 
   public static <T> T one(Class<T> clazz, String sql, Object... args) {
     List<T> list = list(clazz, sql, args);
-    return list.isEmpty() ? null : list.get(0);
+    return list.isEmpty() ? null : list.getFirst();
   }
 
   public static void add(String sql, Object... args) {
@@ -72,7 +71,7 @@ public class DataSourceUtil {
       resultSet = preparedStatement.executeQuery();
       ResultSetMetaData metaData = resultSet.getMetaData();
       int columnCount = metaData.getColumnCount();
-      Map<String, Object> rowData = new HashMap<>(columnCount);
+      Map<String, Object> rowData = HashMap.newHashMap(columnCount);
       while (resultSet.next()) {
         for (i = 1; i <= columnCount; i++) {
           rowData.put(metaData.getColumnLabel(i), resultSet.getObject(i));

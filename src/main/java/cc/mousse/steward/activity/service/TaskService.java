@@ -5,14 +5,13 @@ import cc.mousse.steward.activity.cache.ConfigCache;
 import cc.mousse.steward.activity.cache.PlayerCache;
 import cc.mousse.steward.activity.component.Handler;
 import cc.mousse.steward.activity.util.DateTimeUtil;
+import java.util.*;
 import org.bukkit.Bukkit;
 import org.bukkit.entity.Player;
 import org.bukkit.scheduler.BukkitRunnable;
 
-import java.util.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class TaskService extends BukkitRunnable {
   @Override

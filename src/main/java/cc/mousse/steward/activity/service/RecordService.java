@@ -3,16 +3,14 @@ package cc.mousse.steward.activity.service;
 import cc.mousse.steward.activity.bean.RecordDo;
 import cc.mousse.steward.activity.cache.BasicCache;
 import cc.mousse.steward.activity.util.DataSourceUtil;
-
+import cc.mousse.steward.activity.util.DateTimeUtil;
 import java.util.Date;
 import java.util.List;
 import java.util.Locale;
-
-import cc.mousse.steward.activity.util.DateTimeUtil;
 import org.intellij.lang.annotations.Language;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class RecordService {
   private RecordService() {}
@@ -155,13 +153,19 @@ public class RecordService {
   public static void add(RecordDo recordDo) {
     @Language(BasicCache.MYSQL)
     String sql = "INSERT INTO record(date, state, player, duration) VALUES (?, ?, ?, ?)";
-    DataSourceUtil.add(sql, recordDo.getDate(), recordDo.getState(), recordDo.getPlayer(), recordDo.getDuration());
+    DataSourceUtil.add(
+        sql, recordDo.getDate(), recordDo.getState(), recordDo.getPlayer(), recordDo.getDuration());
   }
 
   public static void update(RecordDo recordDo) {
     @Language(BasicCache.MYSQL)
     String sql = "UPDATE record SET date = ?, state = ?, player = ?, duration = ? WHERE id = ?";
     DataSourceUtil.update(
-        sql, recordDo.getDate(), recordDo.getState(), recordDo.getPlayer(), recordDo.getDuration(), recordDo.getId());
+        sql,
+        recordDo.getDate(),
+        recordDo.getState(),
+        recordDo.getPlayer(),
+        recordDo.getDuration(),
+        recordDo.getId());
   }
 }

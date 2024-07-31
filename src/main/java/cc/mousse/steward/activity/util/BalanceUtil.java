@@ -1,15 +1,14 @@
 package cc.mousse.steward.activity.util;
 
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import cc.mousse.steward.activity.cache.BasicCache;
+import java.math.BigDecimal;
 import org.bukkit.OfflinePlayer;
 import org.bukkit.entity.Player;
 
-import java.math.BigDecimal;
-
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class BalanceUtil {
   private BalanceUtil() {}

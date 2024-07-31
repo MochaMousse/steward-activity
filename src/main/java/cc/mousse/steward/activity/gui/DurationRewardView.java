@@ -1,15 +1,14 @@
 package cc.mousse.steward.activity.gui;
 
-import lombok.NoArgsConstructor;
-import org.fireflyest.craftgui.api.View;
+import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 import java.util.HashMap;
 import java.util.Map;
-
-import static cc.mousse.steward.activity.constant.TextConstant.*;
+import lombok.NoArgsConstructor;
+import org.fireflyest.craftgui.api.View;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 @NoArgsConstructor
 public class DurationRewardView implements View<DurationRewardPage> {

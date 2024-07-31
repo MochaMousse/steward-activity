@@ -1,11 +1,9 @@
 package cc.mousse.steward.activity.constant;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class CommandConstant {
-  private CommandConstant() {}
-
   public static final String COMMAND = "activity.command";
   public static final String ACTIVITY = "activity";
   public static final String MENU = "menu";
@@ -19,4 +17,6 @@ public class CommandConstant {
   public static final String BACK = "back";
   public static final String SIGN = "sign";
   public static final String MONTH = "month";
+
+  private CommandConstant() {}
 }

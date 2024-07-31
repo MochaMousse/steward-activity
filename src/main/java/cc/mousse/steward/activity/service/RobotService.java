@@ -1,23 +1,22 @@
 package cc.mousse.steward.activity.service;
 
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import cc.mousse.steward.activity.bean.RecordDo;
 import cc.mousse.steward.activity.cache.BasicCache;
-import cc.mousse.steward.activity.constant.CommandConstant;
 import cc.mousse.steward.activity.cache.ConfigCache;
 import cc.mousse.steward.activity.cache.PlayerCache;
+import cc.mousse.steward.activity.constant.CommandConstant;
 import cc.mousse.steward.activity.util.*;
+import java.util.*;
 import org.apache.commons.lang3.StringUtils;
 import org.bukkit.Bukkit;
 import org.bukkit.Server;
 import org.bukkit.Sound;
 import org.bukkit.entity.Player;
 
-import java.util.*;
-
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class RobotService {
   private RobotService() {}

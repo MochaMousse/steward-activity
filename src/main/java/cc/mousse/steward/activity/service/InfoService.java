@@ -3,12 +3,11 @@ package cc.mousse.steward.activity.service;
 import cc.mousse.steward.activity.bean.InfoDo;
 import cc.mousse.steward.activity.cache.BasicCache;
 import cc.mousse.steward.activity.util.DataSourceUtil;
+import java.util.List;
 import org.intellij.lang.annotations.Language;
 
-import java.util.List;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class InfoService {
   private InfoService() {}

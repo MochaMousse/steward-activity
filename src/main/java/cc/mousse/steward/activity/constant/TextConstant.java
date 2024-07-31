@@ -5,11 +5,9 @@ import cc.mousse.steward.activity.cache.BasicCache;
 import static cc.mousse.steward.activity.constant.StyleConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class TextConstant {
-  private TextConstant() {}
-
   public static final String EMPTY = "";
   public static final String ZERO = "0";
   public static final String DOT = ".";
@@ -207,4 +205,6 @@ public class TextConstant {
           .concat(TOSTRING_NED);
   public static final String MONTHLY_REPORT_NONE =
       WHITE.concat(REPLACE).concat(YEAR).concat(REPLACE).concat(MONTH).concat(GRAY).concat("无人在线");
+
+  private TextConstant() {}
 }

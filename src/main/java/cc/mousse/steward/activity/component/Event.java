@@ -19,7 +19,7 @@ import org.fireflyest.craftgui.event.ViewClickEvent;
 import org.fireflyest.util.ItemUtils;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class Event implements Listener {
   @EventHandler

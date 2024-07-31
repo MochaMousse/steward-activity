@@ -1,11 +1,11 @@
 package cc.mousse.steward.activity.util;
 
-import java.util.regex.Pattern;
-
 import static cc.mousse.steward.activity.constant.TextConstant.*;
 
+import java.util.regex.Pattern;
+
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class StringUtil {
   private static final Pattern PATTERN = Pattern.compile(SECTION.concat(DOT));

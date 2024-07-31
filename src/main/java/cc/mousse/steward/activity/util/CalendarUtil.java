@@ -1,17 +1,16 @@
 package cc.mousse.steward.activity.util;
 
-import lombok.Data;
-
 import java.math.BigDecimal;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.*;
+import lombok.Data;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class CalendarUtil {
-  private static final Map<String, Day> CACHE = new HashMap<>(16);
+  private static final Map<String, Day> CACHE = HashMap.newHashMap(16);
   private static final String DATE_FORMAT_PATTERN = "yyyy-MM-dd HH:mm:ss";
   private static final String[] CHINESE_NUMERAL_1 =
       new String[] {"正", "二", "三", "四", "五", "六", "七", "八", "九", "十", "十一", "腊"};
@@ -53,6 +52,7 @@ public class CalendarUtil {
   private static final String[] ANIMAL =
       new String[] {"鼠", "牛", "虎", "兔", "龙", "蛇", "马", "羊", "猴", "鸡", "狗", "猪"};
   private static final String[] CHINESE_TEN = {"初", "十", "廿", "卅"};
+
   /** 国历节日 *表示放假日 */
   private static final String[] FESTIVAL =
       new String[] {
@@ -81,6 +81,7 @@ public class CalendarUtil {
         "1224平安夜",
         "1225圣诞节"
       };
+
   /** 农历节日 *表示放假日 */
   private static final String[] LUNAR_FESTIVAL =
       new String[] {
@@ -164,15 +165,14 @@ public class CalendarUtil {
   private static String lunarDay(int day) {
     String lunarDay = "";
     if (day <= 30) {
-      if (day == 10) {
-        lunarDay = "初十";
-      } else if (day == 20) {
-        lunarDay = "二十";
-      } else if (day == 30) {
-        lunarDay = "三十";
-      } else {
-        var n = day % 10 == 0 ? 9 : day % 10 - 1;
-        lunarDay = CHINESE_TEN[day / 10] + CHINESE_NUMERAL_2[n];
+      switch (day) {
+        case 10 -> lunarDay = "初十";
+        case 20 -> lunarDay = "二十";
+        case 30 -> lunarDay = "三十";
+        default -> {
+          var n = day % 10 == 0 ? 9 : day % 10 - 1;
+          lunarDay = CHINESE_TEN[day / 10] + CHINESE_NUMERAL_2[n];
+        }
       }
     }
     return lunarDay;

@@ -18,7 +18,7 @@ import java.util.Map;
 import java.util.Set;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class Handler {
   public void sign(Player player, int signDay) {

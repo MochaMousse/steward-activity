@@ -1,15 +1,17 @@
 package cc.mousse.steward.activity;
 
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
+import cc.mousse.steward.activity.cache.*;
 import cc.mousse.steward.activity.component.Command;
 import cc.mousse.steward.activity.component.Completer;
-import cc.mousse.steward.activity.cache.*;
 import cc.mousse.steward.activity.component.Event;
 import cc.mousse.steward.activity.constant.CommandConstant;
 import cc.mousse.steward.activity.gui.CalendarView;
 import cc.mousse.steward.activity.gui.DaysRewardView;
 import cc.mousse.steward.activity.gui.DurationRewardView;
-import cc.mousse.steward.activity.service.RecordService;
 import cc.mousse.steward.activity.service.InfoService;
+import cc.mousse.steward.activity.service.RecordService;
 import cc.mousse.steward.activity.service.TaskService;
 import cc.mousse.steward.activity.util.ConfigUtil;
 import cc.mousse.steward.activity.util.DateTimeUtil;
@@ -21,10 +23,8 @@ import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
 import org.fireflyest.craftgui.api.ViewGuide;
 
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public final class Application extends JavaPlugin {
   @Override

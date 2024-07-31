@@ -9,7 +9,7 @@ import java.util.HashMap;
 import java.util.Map;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 @AllArgsConstructor
 public class CalendarView implements View<CalendarPage> {

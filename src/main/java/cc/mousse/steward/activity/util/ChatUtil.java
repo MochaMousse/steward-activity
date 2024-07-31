@@ -1,5 +1,7 @@
 package cc.mousse.steward.activity.util;
 
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import cc.mousse.steward.activity.cache.BasicCache;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.TextComponent;
@@ -9,10 +11,8 @@ import net.kyori.adventure.text.format.NamedTextColor;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class ChatUtil {
   private ChatUtil() {}

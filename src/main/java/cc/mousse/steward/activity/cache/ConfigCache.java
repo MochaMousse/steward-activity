@@ -6,11 +6,9 @@ import lombok.Setter;
 import java.util.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class ConfigCache {
-  private ConfigCache() {}
-
   @Getter @Setter private static volatile boolean autoMode;
   @Getter @Setter private static volatile boolean showOnFirstLogin;
   @Getter @Setter private static volatile int chance;
@@ -25,6 +23,8 @@ public class ConfigCache {
   @Getter @Setter private static volatile Integer starOfMonthReward;
   @Getter private static List<Map.Entry<Integer, Integer>> daysReward;
   @Getter private static List<Map.Entry<Long, Integer>> durationReward;
+
+  private ConfigCache() {}
 
   public static void setDaysReward(Map<Integer, Integer> map) {
     daysReward =

@@ -18,7 +18,7 @@ import static cc.mousse.steward.activity.constant.TextConstant.*;
 import static cc.mousse.steward.activity.constant.StyleConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class DaysRewardPage implements ViewPage {
   private final Map<Integer, ItemStack> menuMap = new HashMap<>();

@@ -7,7 +7,7 @@ import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class InfoCache {
   private static final Map<String, InfoDo> INFO_CACHE = new ConcurrentHashMap<>(2);

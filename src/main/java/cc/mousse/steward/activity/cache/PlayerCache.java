@@ -17,7 +17,7 @@ import static cc.mousse.steward.activity.constant.TextConstant.*;
 import static cc.mousse.steward.activity.constant.StyleConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class PlayerCache {
   private static final Map<Integer, ConcurrentHashMap<String, Data>> DATA_CACHE =
@@ -158,7 +158,7 @@ public class PlayerCache {
     private volatile int daysOfMonthReward = -1;
     private volatile long durationOfDayReward = -1L;
     private volatile StateEnum state = StateEnum.UNSIGNED;
-    private final Map<Integer, Set<Integer>> signRecord = new HashMap<>(12);
+    private final Map<Integer, Set<Integer>> signRecord = HashMap.newHashMap(12);
 
     private Data(String player) {
       this.player = player;
@@ -166,7 +166,7 @@ public class PlayerCache {
       loginTime = System.currentTimeMillis();
       int maxMonth = 12;
       for (int i = 1; i <= maxMonth; i++) {
-        signRecord.putIfAbsent(i, new HashSet<>(32));
+        signRecord.putIfAbsent(i, HashSet.newHashSet(32));
       }
       InfoDo infoDo = InfoService.one(player);
       if (infoDo != null) {

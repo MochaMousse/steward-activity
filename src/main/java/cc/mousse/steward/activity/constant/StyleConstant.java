@@ -3,11 +3,9 @@ package cc.mousse.steward.activity.constant;
 import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class StyleConstant {
-  private StyleConstant() {}
-
   public static final String DARK_GREEN = SECTION.concat("2");
   public static final String DARK_AQUA = SECTION.concat("3");
   public static final String GOLD = SECTION.concat("6");
@@ -21,4 +19,6 @@ public class StyleConstant {
   public static final String WHITE = SECTION.concat("f");
   public static final String BOLD = SECTION.concat("l");
   public static final String RESET = SECTION.concat("r");
+
+  private StyleConstant() {}
 }

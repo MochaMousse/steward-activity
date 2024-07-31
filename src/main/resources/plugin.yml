@@ -1,9 +1,9 @@
 name: steward-activity
 version: '${project.version}'
 main: cc.mousse.steward.activity.Application
-api-version: '1.20'
+api-version: '1.21'
 depend: [ CraftGUI, XConomy ]
-author: PhineasZ
+author: MochaMousse
 commands:
   activity:
     description: 打开主界面

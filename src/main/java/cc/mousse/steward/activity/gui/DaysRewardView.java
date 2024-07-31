@@ -1,15 +1,14 @@
 package cc.mousse.steward.activity.gui;
 
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import java.util.HashMap;
 import java.util.Map;
-
 import lombok.NoArgsConstructor;
 import org.fireflyest.craftgui.api.View;
 
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 @NoArgsConstructor
 public class DaysRewardView implements View<DaysRewardPage> {

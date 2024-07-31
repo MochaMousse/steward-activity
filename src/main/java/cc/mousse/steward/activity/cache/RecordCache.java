@@ -6,7 +6,7 @@ import java.util.*;
 import java.util.concurrent.ConcurrentHashMap;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class RecordCache {
   private RecordCache() {}
@@ -63,7 +63,7 @@ public class RecordCache {
       playerName = playerName.toLowerCase(Locale.ROOT);
       put(playerName, null, null, null, null);
       Map<Integer, Map<Integer, Map<Integer, RecordDo>>> map = RECORD_CACHE.get(playerName);
-      years.forEach(year -> map.putIfAbsent(year, new HashMap<>(2)));
+      years.forEach(year -> map.putIfAbsent(year, HashMap.newHashMap(2)));
     }
   }
 
@@ -72,7 +72,7 @@ public class RecordCache {
       playerName = playerName.toLowerCase(Locale.ROOT);
       put(playerName, year, null, null, null);
       Map<Integer, Map<Integer, RecordDo>> map = RECORD_CACHE.get(playerName).get(year);
-      months.forEach(month -> map.putIfAbsent(month, new HashMap<>(6)));
+      months.forEach(month -> map.putIfAbsent(month, HashMap.newHashMap(6)));
     }
   }
 
@@ -95,13 +95,13 @@ public class RecordCache {
   public static void put(
       String playerName, Integer year, Integer month, Integer day, RecordDo recordDo) {
     playerName = playerName.toLowerCase(Locale.ROOT);
-    RECORD_CACHE.putIfAbsent(playerName, new HashMap<>(2));
+    RECORD_CACHE.putIfAbsent(playerName, HashMap.newHashMap(2));
     Map<Integer, Map<Integer, Map<Integer, RecordDo>>> yearMap = RECORD_CACHE.get(playerName);
     if (year != null) {
-      yearMap.putIfAbsent(year, new HashMap<>(6));
+      yearMap.putIfAbsent(year, HashMap.newHashMap(6));
       Map<Integer, Map<Integer, RecordDo>> monthMap = yearMap.get(year);
       if (month != null) {
-        monthMap.putIfAbsent(month, new HashMap<>(12));
+        monthMap.putIfAbsent(month, HashMap.newHashMap(12));
         Map<Integer, RecordDo> dayMap = monthMap.get(month);
         if (day != null) {
           dayMap.putIfAbsent(day, recordDo);

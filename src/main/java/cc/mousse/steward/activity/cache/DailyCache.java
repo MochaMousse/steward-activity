@@ -3,10 +3,10 @@ package cc.mousse.steward.activity.cache;
 import java.util.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class DailyCache {
-  private static final Set<String> DATA_CACHE = new HashSet<>(64);
+  private static final Set<String> DATA_CACHE = HashSet.newHashSet(64);
 
   private DailyCache() {}
 

@@ -1,9 +1,11 @@
 package cc.mousse.steward.activity.gui;
 
+import static cc.mousse.steward.activity.constant.StyleConstant.*;
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import cc.mousse.steward.activity.cache.*;
 import cc.mousse.steward.activity.constant.CommandConstant;
 import cc.mousse.steward.activity.util.DateTimeUtil;
-
 import java.util.*;
 import net.kyori.adventure.text.Component;
 import net.kyori.adventure.text.event.ClickEvent;
@@ -15,18 +17,15 @@ import org.fireflyest.craftgui.api.ViewPage;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-import static cc.mousse.steward.activity.constant.StyleConstant.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class DurationRewardPage implements ViewPage {
   private final Map<Integer, ItemStack> menuMap = new HashMap<>();
-  private Map<Integer, ItemStack> itemMap = new HashMap<>();
   private final Inventory inventory;
   private final String target;
   private final MenuPage menuPage;
+  private Map<Integer, ItemStack> itemMap = new HashMap<>();
 
   public DurationRewardPage(String title, String target) {
     this.target = target;
@@ -109,17 +108,17 @@ public class DurationRewardPage implements ViewPage {
   }
 
   @Override
+  public void setNext(ViewPage next) {
+    // 单页
+  }
+
+  @Override
   public ViewPage getPre() {
     return this;
   }
 
   @Override
   public void setPre(ViewPage pre) {
-    // 单页
-  }
-
-  @Override
-  public void setNext(ViewPage next) {
     // 单页
   }
 

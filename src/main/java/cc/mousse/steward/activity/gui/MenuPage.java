@@ -1,22 +1,21 @@
 package cc.mousse.steward.activity.gui;
 
+import static cc.mousse.steward.activity.constant.StyleConstant.*;
+import static cc.mousse.steward.activity.constant.TextConstant.*;
+
 import cc.mousse.steward.activity.cache.BasicCache;
 import cc.mousse.steward.activity.cache.ConfigCache;
 import cc.mousse.steward.activity.cache.ItemCache;
 import cc.mousse.steward.activity.cache.PlayerCache;
 import cc.mousse.steward.activity.util.DateTimeUtil;
+import java.util.Map;
 import org.bukkit.Bukkit;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.SkullMeta;
 import org.fireflyest.util.ItemUtils;
 
-import java.util.Map;
-
-import static cc.mousse.steward.activity.constant.TextConstant.*;
-import static cc.mousse.steward.activity.constant.StyleConstant.*;
-
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class MenuPage {
   public void init(Map<Integer, ItemStack> menu, boolean calendar) {

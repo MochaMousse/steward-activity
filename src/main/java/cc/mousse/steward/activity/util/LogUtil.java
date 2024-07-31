@@ -1,14 +1,13 @@
 package cc.mousse.steward.activity.util;
 
-import cc.mousse.steward.activity.cache.BasicCache;
-import lombok.extern.slf4j.Slf4j;
-
-import java.util.logging.Logger;
-
 import static cc.mousse.steward.activity.constant.TextConstant.*;
 
+import cc.mousse.steward.activity.cache.BasicCache;
+import java.util.logging.Logger;
+import lombok.extern.slf4j.Slf4j;
+
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 @Slf4j
 public class LogUtil {

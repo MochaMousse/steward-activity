@@ -11,7 +11,7 @@ import static cc.mousse.steward.activity.constant.StyleConstant.*;
 import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 @Data
 @NoArgsConstructor

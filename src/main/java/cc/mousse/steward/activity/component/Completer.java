@@ -18,7 +18,7 @@ import static cc.mousse.steward.activity.constant.LenConstant.*;
 import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class Completer implements TabCompleter {
   private static final List<String> SUB_COMMAND = new ArrayList<>();

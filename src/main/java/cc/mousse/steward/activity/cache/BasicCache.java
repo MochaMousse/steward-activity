@@ -13,11 +13,9 @@ import static cc.mousse.steward.activity.constant.TextConstant.*;
 import static cc.mousse.steward.activity.constant.StyleConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class BasicCache {
-  private BasicCache() {}
-
   @Getter @Setter private static volatile int day;
   @Getter @Setter private static volatile int month;
   @Getter @Setter private static volatile int year;
@@ -46,4 +44,6 @@ public class BasicCache {
           .setFieldNamingPolicy(FieldNamingPolicy.LOWER_CASE_WITH_UNDERSCORES)
           .create();
   public static final String MYSQL = "MySQL";
+
+  private BasicCache() {}
 }

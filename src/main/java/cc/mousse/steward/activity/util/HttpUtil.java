@@ -2,13 +2,12 @@ package cc.mousse.steward.activity.util;
 
 import cc.mousse.steward.activity.cache.BasicCache;
 import com.google.gson.Gson;
-import okhttp3.*;
-
 import java.io.IOException;
 import java.util.Map;
+import okhttp3.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class HttpUtil {
   private static final MediaType JSON = MediaType.parse(BasicCache.JSON_FORMAT);

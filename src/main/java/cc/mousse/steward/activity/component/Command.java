@@ -25,7 +25,7 @@ import static cc.mousse.steward.activity.constant.LenConstant.*;
 import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class Command implements CommandExecutor {
   @Override
@@ -85,7 +85,8 @@ public class Command implements CommandExecutor {
     if (len == 1) {
       ChatUtil.message(
           sender,
-          RobotService.dailyReport(DateTimeUtil.year(), DateTimeUtil.month(), DateTimeUtil.day(), false));
+          RobotService.dailyReport(
+              DateTimeUtil.year(), DateTimeUtil.month(), DateTimeUtil.day(), false));
       return true;
     }
     String message;
@@ -176,21 +177,25 @@ public class Command implements CommandExecutor {
   private boolean signRecord(String[] args, CommandSender sender) {
     int len = args.length;
     if (len > LEN_2 && CommandConstant.INFO.equalsIgnoreCase(args[0])) {
-      if (len == LEN_3) {
-        ChatUtil.message(sender, MONTH_NOT_SPECIFY);
-      } else if (len == LEN_4) {
-        ChatUtil.message(sender, DAY_NOT_SPECIFY);
-      } else {
-        try {
-          signRecord(
-              args[1],
-              Integer.parseInt(args[2]),
-              Integer.parseInt(args[3]),
-              Integer.parseInt(args[4]),
-              sender);
-          return true;
-        } catch (NumberFormatException e) {
-          ChatUtil.message(sender, DATE_FORMAT_ERROR);
+      switch (len) {
+        case LEN_3 -> {
+          ChatUtil.message(sender, MONTH_NOT_SPECIFY);
+        }
+        case LEN_4 -> {
+          ChatUtil.message(sender, DAY_NOT_SPECIFY);
+        }
+        default -> {
+          try {
+            signRecord(
+                args[1],
+                Integer.parseInt(args[2]),
+                Integer.parseInt(args[3]),
+                Integer.parseInt(args[4]),
+                sender);
+            return true;
+          } catch (NumberFormatException e) {
+            ChatUtil.message(sender, DATE_FORMAT_ERROR);
+          }
         }
       }
     }

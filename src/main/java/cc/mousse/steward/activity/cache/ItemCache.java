@@ -15,7 +15,7 @@ import org.fireflyest.craftitem.nbtapi.NBTItem;
 import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 /**
- * @author PhineasZ
+ * @author MochaMousse
  */
 public class ItemCache {
   public static final ItemStack BACK;
@@ -89,7 +89,7 @@ public class ItemCache {
             .lore(SWITCH_MONTH_LORE)
             .command(CommandConstant.MONTH)
             .build();
-    FESTIVAL_ITEM_MAP = new HashMap<>(17);
+    FESTIVAL_ITEM_MAP = HashMap.newHashMap(17);
     FESTIVAL_ITEM_MAP.put("*元旦", Material.BLAZE_SPAWN_EGG);
     FESTIVAL_ITEM_MAP.put("情人节", Material.ROSE_BUSH);
     FESTIVAL_ITEM_MAP.put("植树节", Material.OAK_SAPLING);
