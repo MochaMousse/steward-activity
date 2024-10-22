@@ -1,18 +1,17 @@
 package cc.mousse.steward.activity.cache;
 
-import java.util.*;
+import static cc.mousse.steward.activity.constant.TextConstant.*;
 
 import cc.mousse.steward.activity.constant.CommandConstant;
 import cc.mousse.steward.activity.constant.TextConstant;
 import cc.mousse.steward.activity.util.CalendarUtil;
+import java.util.*;
 import net.kyori.adventure.text.Component;
 import org.bukkit.Material;
 import org.bukkit.inventory.ItemFlag;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
-import org.fireflyest.craftitem.nbtapi.NBTItem;
-
-import static cc.mousse.steward.activity.constant.TextConstant.*;
+//import org.fireflyest.craftitem.nbtapi.NBTItem;
 
 /**
  * @author MochaMousse
@@ -113,8 +112,8 @@ public class ItemCache {
   private ItemCache() {}
 
   public static void setCommand(ItemStack item, String command) {
-    NBTItem nbtItem = new NBTItem(item, true);
-    nbtItem.setString(CommandConstant.COMMAND, command);
+//    NBTItem nbtItem = new NBTItem(item, true);
+//    nbtItem.setString(CommandConstant.COMMAND, command);
   }
 
   public static ItemStack getNotSign(CalendarUtil.Day day, boolean miss) {
@@ -208,10 +207,10 @@ public class ItemCache {
       itemMeta.lore(lore.stream().map(l -> Component.text(l.replace(REF, SECTION))).toList());
       itemMeta.addItemFlags(itemFlag.toArray(new ItemFlag[0]));
       itemStack.setItemMeta(itemMeta);
-      NBTItem nbtItem = new NBTItem(itemStack, true);
-      if (command != null) {
-        nbtItem.setString(CommandConstant.COMMAND, command);
-      }
+//      NBTItem nbtItem = new NBTItem(itemStack, true);
+//      if (command != null) {
+//        nbtItem.setString(CommandConstant.COMMAND, command);
+//      }
       return itemStack;
     }
   }

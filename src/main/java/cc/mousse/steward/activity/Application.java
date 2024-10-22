@@ -7,21 +7,14 @@ import cc.mousse.steward.activity.component.Command;
 import cc.mousse.steward.activity.component.Completer;
 import cc.mousse.steward.activity.component.Event;
 import cc.mousse.steward.activity.constant.CommandConstant;
-import cc.mousse.steward.activity.gui.CalendarView;
-import cc.mousse.steward.activity.gui.DaysRewardView;
-import cc.mousse.steward.activity.gui.DurationRewardView;
 import cc.mousse.steward.activity.service.InfoService;
 import cc.mousse.steward.activity.service.RecordService;
 import cc.mousse.steward.activity.service.TaskService;
 import cc.mousse.steward.activity.util.ConfigUtil;
 import cc.mousse.steward.activity.util.DateTimeUtil;
-import cc.mousse.steward.activity.util.LogUtil;
 import me.yic.xconomy.api.XConomyAPI;
-import org.bukkit.Bukkit;
 import org.bukkit.command.PluginCommand;
-import org.bukkit.plugin.RegisteredServiceProvider;
 import org.bukkit.plugin.java.JavaPlugin;
-import org.fireflyest.craftgui.api.ViewGuide;
 
 /**
  * @author MochaMousse
@@ -60,15 +53,15 @@ public final class Application extends JavaPlugin {
 
   /** 界面初始化 */
   public void initViewGuide() {
-    RegisteredServiceProvider<ViewGuide> rsp =
-        Bukkit.getServer().getServicesManager().getRegistration(ViewGuide.class);
-    if (rsp == null) {
-      LogUtil.warn(GUI_NOTFOUND);
-    } else {
-      ViewCache.setGuide(rsp.getProvider());
-      ViewCache.getGuide().addView(ViewCache.CALENDAR, new CalendarView(BasicCache.DISPLAY_NAME));
-      ViewCache.getGuide().addView(ViewCache.DAYS_REWARD, new DaysRewardView());
-      ViewCache.getGuide().addView(ViewCache.DURATION_REWARD, new DurationRewardView());
-    }
+//    RegisteredServiceProvider<ViewGuide> rsp =
+//        Bukkit.getServer().getServicesManager().getRegistration(ViewGuide.class);
+//    if (rsp == null) {
+//      LogUtil.warn(GUI_NOTFOUND);
+//    } else {
+//      ViewCache.setGuide(rsp.getProvider());
+//      ViewCache.getGuide().addView(ViewCache.CALENDAR, new CalendarView(BasicCache.DISPLAY_NAME));
+//      ViewCache.getGuide().addView(ViewCache.DAYS_REWARD, new DaysRewardView());
+//      ViewCache.getGuide().addView(ViewCache.DURATION_REWARD, new DurationRewardView());
+//    }
   }
 }

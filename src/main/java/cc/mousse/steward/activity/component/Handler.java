@@ -3,19 +3,16 @@ package cc.mousse.steward.activity.component;
 import cc.mousse.steward.activity.bean.RecordDo;
 import cc.mousse.steward.activity.cache.ConfigCache;
 import cc.mousse.steward.activity.cache.PlayerCache;
-import cc.mousse.steward.activity.cache.ViewCache;
 import cc.mousse.steward.activity.constant.StateEnum;
 import cc.mousse.steward.activity.service.RecordService;
 import cc.mousse.steward.activity.util.BalanceUtil;
 import cc.mousse.steward.activity.util.DateTimeUtil;
-import org.bukkit.Sound;
-import org.bukkit.entity.Player;
-import org.fireflyest.craftgui.event.ViewClickEvent;
-
 import java.util.Date;
 import java.util.List;
 import java.util.Map;
 import java.util.Set;
+import org.bukkit.Sound;
+import org.bukkit.entity.Player;
 
 /**
  * @author MochaMousse
@@ -56,14 +53,14 @@ public class Handler {
     }
   }
 
-  public void month(ViewClickEvent event, Player player) {
-    player.playSound(player.getLocation(), Sound.ITEM_BOOK_PAGE_TURN, 1F, 1F);
-    if (event.isRightClick()) {
-      ViewCache.getGuide().nextPage(player);
-    } else {
-      ViewCache.getGuide().prePage(player);
-    }
-  }
+//  public void month(ViewClickEvent event, Player player) {
+//    player.playSound(player.getLocation(), Sound.ITEM_BOOK_PAGE_TURN, 1F, 1F);
+//    if (event.isRightClick()) {
+//      ViewCache.getGuide().nextPage(player);
+//    } else {
+//      ViewCache.getGuide().prePage(player);
+//    }
+//  }
 
   public void daysReward(Player player, boolean isAuto) {
     List<Map.Entry<Integer, Integer>> daysReward = ConfigCache.getDaysReward();
@@ -81,7 +78,7 @@ public class Handler {
         }
       }
       if (!isAuto) {
-        ViewCache.getGuide().openView(player, ViewCache.DAYS_REWARD, playerName);
+//        ViewCache.getGuide().openView(player, ViewCache.DAYS_REWARD, playerName);
         player.playSound(
             player.getLocation(),
             flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,
@@ -109,7 +106,7 @@ public class Handler {
         }
       }
       if (!isAuto) {
-        ViewCache.getGuide().openView(player, ViewCache.DURATION_REWARD, playerName);
+//        ViewCache.getGuide().openView(player, ViewCache.DURATION_REWARD, playerName);
         player.playSound(
             player.getLocation(),
             flag ? Sound.ENTITY_PLAYER_LEVELUP : Sound.ITEM_BOOK_PAGE_TURN,

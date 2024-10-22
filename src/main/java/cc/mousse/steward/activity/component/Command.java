@@ -58,7 +58,7 @@ public class Command implements CommandExecutor {
   private boolean mainPage(String[] args, CommandSender sender) {
     if (args.length == 0) {
       if (sender instanceof Player player) {
-        ViewCache.getGuide().openView(player, ViewCache.CALENDAR, player.getName());
+//        ViewCache.getGuide().openView(player, ViewCache.CALENDAR, player.getName());
       } else {
         ChatUtil.message(sender, PLAYER_ONLY);
       }
